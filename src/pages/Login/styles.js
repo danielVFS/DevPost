@@ -12,26 +12,37 @@ export const Title = styled.Text`
   font-size: 55px;
   font-weight: bold;
   font-style: italic;
+  margin-bottom: 10px;
+`;
+
+export const InputArea = styled.View`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
 `;
 
 export const Input = styled.TextInput`
-  width: 80%;
+  flex: 1;
   background-color: #eee;
   color: #36393f;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   padding: 10px;
-  margin-top: 10px;
-  border-radius: 7px;
   font-size: 17px;
 `;
 
 export const Button = styled.TouchableOpacity`
   width: 80%;
-  background-color: #418cfd;
-  margin-top: 10px;
+  background-color: #e52246;
   padding: 10px;
-  border-radius: 7px;
+  border-radius: 25px;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 `;
 
 export const ButtonText = styled.Text`
@@ -49,4 +60,5 @@ export const SignUpButton = styled.TouchableOpacity`
 export const SignUpButtonText = styled.Text`
   color: #ddd;
   font-size: 15px;
+  font-weight: bold;
 `;
