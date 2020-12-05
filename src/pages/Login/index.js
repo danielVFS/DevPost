@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 export default function Login() {
-  const {signUp, loadingAuth} = useContext(AuthContext);
+  const {signUp, signIn, loadingAuth} = useContext(AuthContext);
   const [login, setLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -34,6 +34,8 @@ export default function Login() {
       alert('Preencha todos os campos');
       return;
     }
+
+    signIn(email, password);
   }
 
   function handleSignUp() {

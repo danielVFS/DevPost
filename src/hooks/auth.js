@@ -10,6 +10,35 @@ function AuthProvider({children}) {
   //const [loading, setLoading] = useState(true);
   const [loadingAuth, setLoadingAuth] = useState(false);
 
+  async function signIn(email, password) {
+    setLoadingAuth(true);
+
+    await auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(async (value) => {
+        let uid = value.user.uid;
+        // Buscar nome doo usuário logado
+        const userProfile = await firestore()
+          .collection('users')
+          .doc(uid)
+          .get();
+
+        let data = {
+          uid: uid,
+          name: userProfile.data().name,
+          email: value.user.email,
+        };
+
+        setUser(data);
+        storageUser(data);
+        setLoadingAuth(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoadingAuth(false);
+      });
+  }
+
   async function signUp(email, password, name) {
     setLoadingAuth(true);
 
@@ -37,6 +66,7 @@ function AuthProvider({children}) {
       })
       .catch((error) => {
         console.log(error);
+        setLoadingAuth(false);
       });
   }
 
@@ -45,7 +75,8 @@ function AuthProvider({children}) {
   }
 
   return (
-    <AuthContext.Provider value={{signed: !!user, user, signUp, loadingAuth}}>
+    <AuthContext.Provider
+      value={{signed: !!user, user, signUp, signIn, loadingAuth}}>
       {children}
     </AuthContext.Provider>
   );
