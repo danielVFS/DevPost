@@ -21,6 +21,23 @@ export default function Login() {
 
   function toggleLogin() {
     setLogin(!login);
+    setName('');
+    setEmail('');
+    setPassword('');
+  }
+
+  function handleLogin() {
+    if (email === '' || password === '') {
+      alert('Preencha todos os campos');
+      return;
+    }
+  }
+
+  function handleSignUp() {
+    if (name === '' || email === '' || password === '') {
+      alert('Preencha todos os campos');
+      return;
+    }
   }
 
   if (login) {
@@ -74,7 +91,7 @@ export default function Login() {
           />
         </InputArea>
 
-        <Button>
+        <Button onPress={handleLogin}>
           <ButtonText>Acessar</ButtonText>
         </Button>
 
@@ -156,7 +173,7 @@ export default function Login() {
         />
       </InputArea>
 
-      <Button>
+      <Button onPress={handleSignUp}>
         <ButtonText>Cadastrar</ButtonText>
       </Button>
 
