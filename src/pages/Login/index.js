@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {Text} from 'react-native';
+import {Text, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import {AuthContext} from '../../hooks/auth';
@@ -16,7 +16,7 @@ import {
 } from './styles';
 
 export default function Login() {
-  const {signUp} = useContext(AuthContext);
+  const {signUp, loadingAuth} = useContext(AuthContext);
   const [login, setLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -29,7 +29,7 @@ export default function Login() {
     setPassword('');
   }
 
-  function handleLogin() {
+  function handleSignIn() {
     if (email === '' || password === '') {
       alert('Preencha todos os campos');
       return;
@@ -96,8 +96,12 @@ export default function Login() {
           />
         </InputArea>
 
-        <Button onPress={handleLogin}>
-          <ButtonText>Acessar</ButtonText>
+        <Button onPress={handleSignIn}>
+          {loadingAuth ? (
+            <ActivityIndicator size={20} color="#FFF" />
+          ) : (
+            <ButtonText>Acessar</ButtonText>
+          )}
         </Button>
 
         <SignUpButton onPress={toggleLogin}>
@@ -179,7 +183,11 @@ export default function Login() {
       </InputArea>
 
       <Button onPress={handleSignUp}>
-        <ButtonText>Cadastrar</ButtonText>
+        {loadingAuth ? (
+          <ActivityIndicator size={20} color="#FFF" />
+        ) : (
+          <ButtonText>Cadastrar</ButtonText>
+        )}
       </Button>
 
       <SignUpButton onPress={toggleLogin}>
