@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {Text, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
