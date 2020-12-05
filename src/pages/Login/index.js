@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+
+import {AuthContext} from '../../hooks/auth';
 
 import {
   Container,
@@ -14,6 +16,7 @@ import {
 } from './styles';
 
 export default function Login() {
+  const {signUp} = useContext(AuthContext);
   const [login, setLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -38,6 +41,8 @@ export default function Login() {
       alert('Preencha todos os campos');
       return;
     }
+
+    signUp(email, password, name);
   }
 
   if (login) {
