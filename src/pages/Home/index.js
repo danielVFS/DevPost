@@ -50,7 +50,11 @@ export default function Home() {
           <ActivityIndicator size={50} color="#e52246" />
         </View>
       ) : (
-        <ListPosts data={posts} renderItem={({item}) => <PostsList />} />
+        <ListPosts
+          showsVerticalScrollIndicator={false}
+          data={posts}
+          renderItem={({item}) => <PostsList data={item} userId={user.uid} />}
+        />
       )}
 
       <ButtonPost onPress={() => navigation.navigate('NewPost')}>
